@@ -1,0 +1,376 @@
+/* =======================================================
+   Goblin Bookie Theme + Layout Variables
+======================================================= */
+:root {
+    --goblin-bg: #282C35;         /* App background */
+    --goblin-tile: #1A1C22;       /* Card/tile background */
+    --goblin-green: #1FCB4F;      /* Accent green */
+    --goblin-border: #23232c;
+    --goblin-article: #181824;    /* Lighter article tile */
+    --goblin-text: #ececf3;
+}
+/* Dark theme overrides for Bootstrap defaults */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--goblin-bg);
+    --bs-body-color: var(--goblin-text);
+    --bs-primary: #c23030;
+    --bs-secondary: #33374a;
+    --bs-success: var(--goblin-green);
+    --bs-info: #3fc7fa;
+    --bs-warning: #ffd236;
+    --bs-danger: #fd406c;
+    --bs-light: #23253b;
+    --bs-dark: #1b1d23;
+    --bs-border-radius: 1.5rem;
+    --bs-card-bg: var(--goblin-tile);
+    --bs-card-border-color: var(--goblin-border);
+    --bs-navbar-bg: #191a23;
+    --bs-navbar-color: var(--goblin-text);
+    --bs-link-color: #c23030;
+    --bs-link-hover-color: #fd406c;
+}
+
+/* =======================================================
+   Base, Cards & Tile Layout
+======================================================= */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--goblin-bg);
+    color: var(--goblin-text);
+    margin: 0;
+    min-height: 100vh;
+}
+.card, .bg-dark, .bg-dark-subtle {
+    background: var(--goblin-tile);
+    color: var(--goblin-text);
+    border-radius: var(--bs-border-radius, 1.5rem);
+    border: 1.5px solid var(--goblin-border);
+    margin-bottom: 1.6rem;
+}
+
+/* =======================================================
+   Buttons
+======================================================= */
+.btn-primary, .btn-success, .btn-dark {
+    border-radius: 1.1rem;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.btn-primary {
+    background: linear-gradient(90deg, #c23030 70%, #fd406c 120%);
+    border: none;
+    color: #fff;
+}
+.btn-success {
+    background: var(--goblin-green);
+    border: none;
+    color: #fff;
+}
+.btn-dark {
+    background: #2d2e38;
+    border: none;
+    color: var(--goblin-text);
+}
+.btn-primary:hover, .btn-success:hover, .btn-dark:hover {
+    filter: brightness(1.09) saturate(1.07);
+    border-color: var(--goblin-green);
+}
+
+/* =======================================================
+   Form Controls (Inputs, Search Bar)
+======================================================= */
+.form-control {
+    background: var(--goblin-bg);
+    color: var(--goblin-text);
+    border: 2px solid var(--goblin-bg);
+    border-radius: 0.9rem;
+    font-size: 18px;
+    padding: 0.65rem 1.1rem;
+}
+.form-control:focus {
+    background: var(--goblin-bg) !important;
+    color: var(--goblin-text);
+    border-color: var(--goblin-green) !important;
+    box-shadow: none !important;
+}
+.form-control::placeholder {
+    color: #b0b6c4;
+    opacity: 1;
+}
+
+/* =======================================================
+   Navbar / Header Styles
+======================================================= */
+.goblin-header-bar {
+    width: 100vw;
+    background: var(--goblin-tile);
+    box-shadow: 0 2px 14px #0003;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0;
+    margin-bottom: 38px;
+}
+.goblin-header-inner {
+    max-width: 60vw;
+    margin: 0 auto;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+}
+.goblin-header-home-link {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    height: 100%;
+}
+.goblin-header-logo-img {
+    height: 100px;
+    width: auto;
+    margin-bottom: -28px;
+    display: block;
+    vertical-align: bottom;
+}
+.goblin-header-title {
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: var(--goblin-green);
+    margin-left: 8px;
+    line-height: 1;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    transition: color 0.16s;
+}
+.goblin-header-home-link:hover .goblin-header-title,
+.goblin-header-home-link:focus .goblin-header-title {
+    color: #14b03a;
+}
+@media (max-width: 900px) {
+    .goblin-header-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .homepage-card {
+        padding: 24px 16px;
+    }
+}
+
+/* =======================================================
+   Homepage / Articles / SearchBar
+======================================================= */
+.homepage-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+}
+.homepage-card {
+    border-radius: 24px;
+    padding: 32px 40px;
+    width: 100%;
+    max-width: 60vw;
+    margin-bottom: 36px;
+    background: var(--goblin-tile);
+    border: 1.5px solid var(--goblin-border);
+}
+.homepage-title { font-weight: 800; font-size: 28px; }
+.homepage-section-margin { margin-bottom: 1.5rem; }
+.homepage-btn-padding { padding-left: 1.5rem; padding-right: 1.5rem; }
+.homepage-searchbar { display: flex; gap: 16px; }
+@media (max-width: 700px) {
+    .homepage-searchbar { flex-direction: column; gap: 8px; }
+}
+.homepage-search-btn { font-size: 16px; font-weight: 600; }
+.homepage-subtitle { font-weight: 700; font-size: 24px; }
+.homepage-articles-row {
+    display: flex; gap: 28px; flex-wrap: wrap; justify-content: flex-start;
+}
+.homepage-article-tile {
+    flex: 1 1 calc(33.333% - 19px);
+    min-width: 0;
+    max-width: calc(33.333% - 19px);
+    box-sizing: border-box;
+    border-radius: 18px;
+    border: 1.5px solid var(--goblin-border);
+    background: var(--goblin-bg);
+    box-shadow: 0 1px 7px #22242c22;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    transition: box-shadow 0.17s, border-color 0.14s, transform 0.11s;
+    width: 20vw;
+}
+.homepage-article-img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+.homepage-article-title { font-size: 15px; margin-bottom: 8px; }
+.homepage-article-desc { font-size: 14px; color: #bbb; }
+
+/* =======================================================
+   Article Tiles & Cards: Hover Animations
+======================================================= */
+.article-tile, .card-hover {
+    /* Card style, for hover effect on all tiles/cards */
+    transition: box-shadow 0.17s, border-color 0.14s, transform 0.11s;
+}
+.article-tile:hover, .card-hover:hover {
+    border-color: var(--goblin-green);
+    transform: translateY(-4px) scale(1.025);
+    z-index: 2;
+}
+
+/* =======================================================
+   Search Results Cards/Grids
+======================================================= */
+.searchresults-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    max-width: 70vw;
+    margin: 0 auto 48px auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+.searchresults-card {
+    background: var(--goblin-tile);
+    border: 1.5px solid var(--goblin-border);
+    border-radius: 18px;
+    box-shadow: 0 1px 7px #22242c22;
+    padding: 18px 14px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.17s, border-color 0.14s, transform 0.11s;
+    min-width: 240px;
+    max-width: 256px;
+    width: 100%;
+}
+.searchresults-card:hover, .searchresults-card:focus {
+    border-color: var(--goblin-green);
+    transform: translateY(-4px) scale(1.025);
+    z-index: 2;
+}
+.searchresults-card-pointer { cursor: pointer; }
+.searchresults-article-img {
+    width: 100%;
+    max-width: 222px;
+    max-height: 308px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #181824;
+    display: block;
+}
+.searchresults-card-margin { margin-bottom: 30px; }
+.searchresults-title-margin { margin-bottom: 20px; }
+.searchresults-query { color: #1FCB4F; }
+.searchresults-stats { font-size: 14px; width: 100%; }
+.searchresults-no-price { color: #ffd236; font-weight: 600; }
+.searchresults-weeklychange-pos { color: #1FCB4F; }
+.searchresults-weeklychange-neg { color: #ff4867; }
+@media (max-width: 1200px) {
+    .searchresults-grid { max-width: 96vw; gap: 18px; }
+    .searchresults-card { min-width: 160px; max-width: 44vw; }
+}
+@media (max-width: 800px) {
+    .searchresults-grid { max-width: 100vw; gap: 10px; padding: 0 4vw; }
+    .searchresults-card { min-width: 100px; max-width: 90vw; }
+}
+
+/* =======================================================
+   Card Detail Page (stat tiles, info, vendor table)
+======================================================= */
+.carddetail-maincard {
+    max-width: 1040px;
+    margin: 32px auto;
+    padding: 38px 44px;
+}
+.carddetail-error { color: #fd406c; }
+.carddetail-stat-tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-bottom: 36px;
+}
+.carddetail-stat-icon { font-size: 28px; margin-bottom: 2px; }
+.carddetail-stat-label { color: #bbb; font-weight: 600; font-size: 15px; }
+.carddetail-info-chartrow {
+    display: flex; gap: 48px; align-items: flex-start; margin-bottom: 38px; flex-wrap: wrap;
+}
+.carddetail-infoblock { min-width: 260px; flex: 0 0 260px; }
+.carddetail-image {
+    width: 260px; height: 360px; object-fit: contain;
+    border-radius: 12px; margin-bottom: 16px; background: #181824; box-shadow: 0 2px 12px #0003;
+}
+.carddetail-name { font-weight: 800; font-size: 23px; margin: 0 0 7px 0; }
+.carddetail-metadata { color: #bbb; font-size: 16px; margin-bottom: 4px; }
+.carddetail-finishes { color: #1FCB4F; font-size: 15px; }
+.carddetail-chartblock { flex: 1; min-width: 0; }
+.carddetail-chart-title { font-weight: 700; color: #bbb; font-size: 15px; margin-bottom: 8px; }
+/* Vendor Table */
+.carddetail-vendor-title { font-weight: 700; color: #bbb; font-size: 16px; margin: 10px 0 5px 0; }
+.carddetail-vendor-table {
+    width: 100%; color: #ececf3; font-size: 15px; border-collapse: collapse;
+}
+.carddetail-vendor-header { color: #1FCB4F; border-bottom: 1.5px solid #353659; }
+.carddetail-vendor-th { text-align: left; padding: 4px 0; }
+.carddetail-vendor-row { border-bottom: 1px solid #23232c; }
+.carddetail-vendor-name { font-weight: 700; }
+.carddetail-vendor-link { color: #3fc7fa; font-weight: 600; }
+
+/* =======================================================
+   Stat Tiles (shared - homepage & detail)
+======================================================= */
+.detail-stat-tile {
+    background: var(--goblin-tile, #1A1C22) !important;
+    border-radius: 16px;
+    padding: 18px 0 14px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 3px 12px #0002;
+    min-width: 110px;
+    min-height: 80px;
+    transition: box-shadow 0.16s, transform 0.12s, border 0.12s;
+    border: 1.5px solid var(--goblin-border, #23232c);
+    margin-bottom: 0;
+}
+.detail-stat-tile:hover, .detail-stat-tile:focus {
+    border-color: var(--goblin-green, #1FCB4F);
+    box-shadow: 0 8px 28px 0 var(--goblin-green, #1FCB4F), 0 1.5px 6px #ffd23633;
+    transform: translateY(-3px) scale(1.025);
+    z-index: 2;
+}
+.detail-stat-tile > div:first-child {
+    font-size: 28px;  /* Icon size */
+    margin-bottom: 2px;
+    line-height: 1;
+}
+.detail-stat-tile > div:nth-child(2) {
+    color: #bbb;
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+.detail-stat-tile > div:last-child,
+.detail-stat-value {
+    font-size: 23px;
+    font-weight: 700;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: var(--goblin-green, #1FCB4F) !important;
+}
+@media (max-width: 900px) {
+    .detail-stat-tile { min-width: 90px; padding: 12px 0 10px 0; }
+}

@@ -1,25 +1,17 @@
-import { useEffect, useState } from 'react';
-import { fetchSampleCards } from './services/cardService';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Homepage from './pages/Homepage';
+import SearchResults from './pages/SearchResults.tsx';
+import CardDetailPage from './pages/CardDetailPage';
 function App() {
-  const [cards, setCards] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetchSampleCards().then(setCards).catch(console.error);
-  }, []);
-
   return (
-    <div className="container py-4">
-      <h1 className="mb-3">Goblin Bookie</h1>
-      <ul className="list-group">
-        {cards.map((card, idx) => (
-          <li className="list-group-item" key={idx}>
-            <strong>{card.name}</strong> – Set: {card.set}, TCG ID: {card.tcgplayerId}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/search" element={<SearchResults />} />
+        <Route path="/card/:uuid" element={<CardDetailPage />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
