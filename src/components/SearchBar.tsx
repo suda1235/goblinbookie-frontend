@@ -28,7 +28,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const [value, setValue] = useState(initialValue);
 
-  // Handles form submit (Enter or button)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) onSearch(value.trim());

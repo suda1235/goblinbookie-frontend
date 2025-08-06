@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Set your actual backend URL here or use Vite env variables
 const API_BASE =
   import.meta.env.VITE_API_BASE_URL || 'https://goblinbookie-backend.onrender.com/api';
 

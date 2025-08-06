@@ -38,12 +38,10 @@ const SearchResults: React.FC = () => {
     <div className="homepage-root">
       <Header />
 
-      {/* Search bar at top, value is synced to URL param */}
       <div className="card shadow homepage-card searchresults-card-margin">
         <SearchBar initialValue={query} onSearch={handleSearch} />
       </div>
 
-      {/* Section heading shows the current query */}
       <h2 className="searchresults-title searchresults-title-margin">
         Search Results for <span className="searchresults-query">"{query}"</span>
       </h2>
