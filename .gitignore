@@ -28,6 +28,3 @@ dist-ssr/
 *.njsproj
 *.sln
 *.sw?
-
-# Vite-related
-vite-env.d.ts
