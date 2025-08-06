@@ -6,6 +6,7 @@
  * Design Notes:
  *   - Fetches cards from backend API based on the `query` URL parameter.
  *   - Child components: Header (top nav) and SearchBar (search input).
+ *   - Now supports basic pagination (Next/Prev).
  */
 
 import React, { useEffect, useState } from 'react';
@@ -15,24 +16,31 @@ import type { Card } from '../types/Card';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 
+const PAGE_SIZE = 20; // Default limit per page
+
 const SearchResults: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const query = searchParams.get('query') || '';
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (!query) return;
     setLoading(true);
-    fetchCardsByName(query)
+    fetchCardsByName(query, PAGE_SIZE, page)
       .then(setCards)
       .finally(() => setLoading(false));
-  }, [query]);
+  }, [query, page]);
 
   const handleSearch = (value: string) => {
     navigate(`/search?query=${encodeURIComponent(value)}`);
+    setPage(1); // Reset to page 1 on new search
   };
+
+  const handleNext = () => setPage((p) => p + 1);
+  const handlePrev = () => setPage((p) => Math.max(1, p - 1));
 
   return (
     <div className="homepage-root">
@@ -108,6 +116,19 @@ const SearchResults: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      {!loading && cards.length > 0 && (
+        <div style={{ display: 'flex', gap: 12, marginTop: 32, justifyContent: 'center' }}>
+          <button className="btn btn-dark" onClick={handlePrev} disabled={page === 1}>
+            Previous
+          </button>
+          <span style={{ alignSelf: 'center', fontWeight: 600 }}>Page {page}</span>
+          <button className="btn btn-dark" onClick={handleNext} disabled={cards.length < PAGE_SIZE}>
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

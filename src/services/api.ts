@@ -3,8 +3,8 @@ import axios from 'axios';
 const API_BASE =
   import.meta.env.VITE_API_BASE_URL || 'https://goblinbookie-backend.onrender.com/api';
 
-export async function fetchCardsByName(name: string) {
-  const res = await axios.get(`${API_BASE}/cards`, { params: { name } });
+export async function fetchCardsByName(name: string, limit: number = 20, page: number = 1) {
+  const res = await axios.get(`${API_BASE}/cards`, { params: { name, limit, page } });
   return res.data;
 }
 
